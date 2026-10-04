@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Martin Victoria</title>
-<meta name="description" content="J.D. candidate at the University of Miami School of Law building toward a career in transactional law.">
+<title>Articles | Martin Victoria</title>
+<meta name="description" content="Breakdowns of deals and filings by Martin Victoria, sorted by topic.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Martin Victoria">
-<meta property="og:description" content="J.D. candidate at the University of Miami School of Law building toward a career in transactional law.">
+<meta property="og:title" content="Articles | Martin Victoria">
+<meta property="og:description" content="Breakdowns of deals and filings by Martin Victoria, sorted by topic.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Martin Victoria">
-<meta name="twitter:description" content="J.D. candidate at the University of Miami School of Law building toward a career in transactional law.">
+<meta name="twitter:title" content="Articles | Martin Victoria">
+<meta name="twitter:description" content="Breakdowns of deals and filings by Martin Victoria, sorted by topic.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Mrs+Saint+Delafield&display=swap">
 <style>
 /* Design plan
@@ -341,27 +341,69 @@ footer a:hover{text-decoration:underline}
 </head>
 <body>
 <div class="page">
-<header class="topbar"><a class="wordmark" href="index.html">Martin Victoria</a><nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="articles.html">Articles</a></nav></header>
+<header class="topbar"><a class="wordmark" href="index.html">Martin Victoria</a><nav class="nav" aria-label="Main"><a href="index.html">Home</a><a href="about.html">About</a><a href="articles.html" aria-current="page">Articles</a></nav></header>
 <main id="main">
 
-<section class="hero">
-  <h1><span>Martin</span><span>Victoria</span></h1>
-  <div class="sign" aria-hidden="true"><span class="signature">Martin Victoria</span></div>
-  <p class="lede">Law student headed into transactional work. This is where I keep my background, my certifications, and the deals and filings I write about.</p>
-  <dl class="facts">
-    <div><dt>In school</dt><dd>J.D. candidate, University of Miami School of Law, class of 2028</dd></div>
-    <div><dt>Certified</dt><dd>Thomson Reuters Transactional Skills and Advanced certifications</dd></div>
-    <div><dt>Focus</dt><dd>M&amp;A, securities, and corporate practice</dd></div>
-  </dl>
+<section class="intro">
+  <h1>Articles</h1>
+  <p class="lede">Breakdowns of real deals and filings, with the legal reasoning behind them. Each topic has its own color.</p>
+  <div class="filters" id="filters" role="group" aria-label="Filter by topic"></div>
 </section>
-<nav class="doors" aria-label="Sections">
-  <a class="door" href="about.html"><span class="t">About</span><span class="d">Background, experience, certifications, and how to reach me.</span></a>
-  <a class="door" href="articles.html"><span class="t">Articles</span><span class="d">Breakdowns of deals and filings, sorted by topic.</span></a>
-</nav>
+<section aria-live="polite"><div class="articles" id="list"></div></section>
 
 </main>
 <footer><span>Martin Victoria, University of Miami School of Law</span><a href="https://www.linkedin.com/in/martinvictorialaw/" target="_blank" rel="noopener">LinkedIn</a></footer>
 </div>
-
+<script>
+/* To add an article, add an object to this list:
+   { title:"...", topic:"ma", date:"October 2026", summary:"One or two sentences.", url:"article-name.html" }
+   Topics: ma, sec, ip, priv, corp, sports */
+var ARTICLES = [];
+var TOPICS = [
+  {key:"ma", name:"M&A"},
+  {key:"sec", name:"Securities"},
+  {key:"ip", name:"IP"},
+  {key:"priv", name:"Privacy"},
+  {key:"corp", name:"Corporate"},
+  {key:"sports", name:"Sports"}
+];
+(function(){
+  var filters = document.getElementById('filters');
+  var list = document.getElementById('list');
+  var active = 'all';
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function count(k){ return ARTICLES.filter(function(a){ return k === 'all' || a.topic === k; }).length; }
+  function renderFilters(){
+    var html = '<button class="filter" type="button" data-key="all" aria-pressed="' + (active === 'all') + '">All<span class="count">' + count('all') + '</span></button>';
+    TOPICS.forEach(function(t){
+      html += '<button class="filter" type="button" data-topic="' + t.key + '" data-key="' + t.key + '" aria-pressed="' + (active === t.key) + '">' + esc(t.name) + '<span class="count">' + count(t.key) + '</span></button>';
+    });
+    filters.innerHTML = html;
+  }
+  function renderList(){
+    var items = ARTICLES.filter(function(a){ return active === 'all' || a.topic === active; });
+    if(!items.length){
+      var name = 'yet';
+      if(active !== 'all'){ TOPICS.forEach(function(t){ if(t.key === active) name = 'under ' + t.name + ' yet'; }); }
+      list.innerHTML = '<div class="empty"><h3>Nothing posted ' + esc(name) + '.</h3><p>The first articles are in progress. Check back soon.</p></div>';
+      return;
+    }
+    list.innerHTML = items.map(function(a){
+      var tname = a.topic;
+      TOPICS.forEach(function(t){ if(t.key === a.topic) tname = t.name; });
+      return '<a class="card" data-topic="' + esc(a.topic) + '" href="' + esc(a.url) + '"><div class="meta"><span class="topic-name">' + esc(tname) + '</span><span>' + esc(a.date) + '</span></div><h3>' + esc(a.title) + '</h3><p>' + esc(a.summary) + '</p></a>';
+    }).join('');
+  }
+  filters.addEventListener('click', function(e){
+    var b = e.target.closest('button[data-key]');
+    if(!b) return;
+    active = b.getAttribute('data-key');
+    renderFilters();
+    renderList();
+  });
+  renderFilters();
+  renderList();
+})();
+</script>
 </body>
 </html>

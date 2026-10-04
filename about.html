@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Martin Victoria</title>
+<title>About | Martin Victoria</title>
 <meta name="description" content="J.D. candidate at the University of Miami School of Law building toward a career in transactional law.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Martin Victoria">
+<meta property="og:title" content="About | Martin Victoria">
 <meta property="og:description" content="J.D. candidate at the University of Miami School of Law building toward a career in transactional law.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Martin Victoria">
+<meta name="twitter:title" content="About | Martin Victoria">
 <meta name="twitter:description" content="J.D. candidate at the University of Miami School of Law building toward a career in transactional law.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Mrs+Saint+Delafield&display=swap">
 <style>
@@ -341,27 +341,87 @@ footer a:hover{text-decoration:underline}
 </head>
 <body>
 <div class="page">
-<header class="topbar"><a class="wordmark" href="index.html">Martin Victoria</a><nav class="nav" aria-label="Main"><a href="index.html" aria-current="page">Home</a><a href="about.html">About</a><a href="articles.html">Articles</a></nav></header>
+<header class="topbar"><a class="wordmark" href="index.html">Martin Victoria</a><nav class="nav" aria-label="Main"><a href="index.html">Home</a><a href="about.html" aria-current="page">About</a><a href="articles.html">Articles</a></nav></header>
 <main id="main">
 
-<section class="hero">
-  <h1><span>Martin</span><span>Victoria</span></h1>
-  <div class="sign" aria-hidden="true"><span class="signature">Martin Victoria</span></div>
-  <p class="lede">Law student headed into transactional work. This is where I keep my background, my certifications, and the deals and filings I write about.</p>
-  <dl class="facts">
-    <div><dt>In school</dt><dd>J.D. candidate, University of Miami School of Law, class of 2028</dd></div>
-    <div><dt>Certified</dt><dd>Thomson Reuters Transactional Skills and Advanced certifications</dd></div>
-    <div><dt>Focus</dt><dd>M&amp;A, securities, and corporate practice</dd></div>
-  </dl>
+<section class="intro">
+  <h1>About</h1>
+  <p class="lede">I'm a J.D. candidate at the University of Miami School of Law, building toward a career in transactional law with a focus on M&amp;A, securities, and corporate practice.</p>
 </section>
-<nav class="doors" aria-label="Sections">
-  <a class="door" href="about.html"><span class="t">About</span><span class="d">Background, experience, certifications, and how to reach me.</span></a>
-  <a class="door" href="articles.html"><span class="t">Articles</span><span class="d">Breakdowns of deals and filings, sorted by topic.</span></a>
-</nav>
+
+<section class="block" id="background">
+  <h2>Background</h2>
+  <div>
+    <p>I previously worked as a Legal Operations Specialist at American Express, managing commercial contracts alongside in-house counsel. That work first drew me toward deal-side legal work.</p>
+    <p>In law school I have completed the Thomson Reuters Transactional Skills and Advanced certifications. In Transactional Skills coursework I worked with a team to incorporate a hypothetical media company, and I drafted a publishing agreement for a historical exercise set in 1881.</p>
+  </div>
+</section>
+
+<section class="block" id="experience">
+  <h2>Experience</h2>
+  <ol class="timeline">
+    <li>
+      <div class="when">2026 to present</div>
+      <h3>Law Clerk</h3>
+      <p class="org">The Echevarria Law Firm, P.A.</p>
+      <p>Case law research supporting and opposing motions, and drafting documents ranging from complaints to proposed orders.</p>
+    </li>
+    <li>
+      <div class="when">2025 to August 2026</div>
+      <h3>Law Clerk</h3>
+      <p class="org">Alvarez, Feltman, Da Silva &amp; Costa</p>
+      <p>Motion drafting, statutory research, and insurance policy review for coverage assessment at a plaintiff-side personal injury and property damage firm.</p>
+    </li>
+    <li>
+      <div class="when">Previously</div>
+      <h3>Legal Operations Specialist</h3>
+      <p class="org">American Express</p>
+      <p>Managed commercial contracts and partnered with in-house counsel on regulatory compliance.</p>
+    </li>
+  </ol>
+</section>
+
+<section class="block" id="education">
+  <h2>Education and certifications</h2>
+  <ul class="plain-list">
+    <li><div class="n">J.D. candidate, expected 2028</div><div class="s">University of Miami School of Law. Coursework includes Transactional Skills I and Business Associations.</div></li>
+    <li><div class="n">Transactional Skills</div><div class="s">Thomson Reuters certification</div></li>
+    <li><div class="n">Advanced Certification</div><div class="s">Thomson Reuters</div></li>
+  </ul>
+</section>
+
+<section class="block" id="contact">
+  <h2>Contact</h2>
+  <div>
+    <div class="contact-row"><span class="k">LinkedIn</span><a class="v" href="https://www.linkedin.com/in/martinvictorialaw/" target="_blank" rel="noopener">linkedin.com/in/martinvictorialaw</a></div>
+    <div class="contact-row"><span class="k">Email</span><span class="v" id="email-value">mxv1057@miami.edu</span><button class="copy-btn" id="copy-email" type="button">Copy</button></div>
+  </div>
+</section>
 
 </main>
 <footer><span>Martin Victoria, University of Miami School of Law</span><a href="https://www.linkedin.com/in/martinvictorialaw/" target="_blank" rel="noopener">LinkedIn</a></footer>
 </div>
-
+<script>
+(function(){
+  var btn = document.getElementById('copy-email');
+  var val = document.getElementById('email-value');
+  if(!btn || !val) return;
+  btn.addEventListener('click', function(){
+    var text = val.textContent.trim();
+    function fallback(){
+      try{
+        var r = document.createRange(); r.selectNodeContents(val);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      }catch(e){}
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){
+        btn.textContent = 'Copied';
+        setTimeout(function(){ btn.textContent = 'Copy'; }, 1500);
+      }).catch(fallback);
+    } else { fallback(); }
+  });
+})();
+</script>
 </body>
 </html>
