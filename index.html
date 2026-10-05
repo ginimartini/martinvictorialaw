@@ -11,7 +11,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Martin Victoria">
 <meta name="twitter:description" content="J.D. candidate at the University of Miami School of Law building toward a career in transactional law.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Mrs+Saint+Delafield&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
 /* Design plan
    Layout: three quiet pages (home, about, articles) on cool paper. One loud moment: an oversized name
@@ -33,7 +33,6 @@
   --topic-sports:#C2571A;
   --display:"Instrument Serif", "Times New Roman", serif;
   --body:"Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --script:"Mrs Saint Delafield", "Snell Roundhand", cursive;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
@@ -127,33 +126,23 @@ p{margin:0 0 1em;max-width:62ch}
 }
 .hero h1 span{display:block}
 .hero h1 span + span{padding-left:.45em}
-.sign{
-  position:relative;
-  max-width:520px;
-  margin-top:clamp(20px,3vw,36px);
-  padding-bottom:6px;
-  border-bottom:1.5px solid var(--ink);
+.hero h1 span{
+  padding-bottom:.08em;
+  -webkit-mask-image:linear-gradient(90deg,#000 45%,transparent 58%);
+  mask-image:linear-gradient(90deg,#000 45%,transparent 58%);
+  -webkit-mask-size:260% 100%;
+  mask-size:260% 100%;
+  -webkit-mask-position:0 0;
+  mask-position:0 0;
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  animation:write 1.5s cubic-bezier(.45,.1,.3,1) .25s backwards;
 }
-.sign::before{
-  content:"x";
-  position:absolute;
-  left:0;
-  bottom:10px;
-  font-size:1.15rem;
-  color:var(--muted);
+.hero h1 span + span{animation-delay:1.25s}
+@keyframes write{
+  from{-webkit-mask-position:100% 0;mask-position:100% 0}
+  to{-webkit-mask-position:0 0;mask-position:0 0}
 }
-.signature{
-  display:block;
-  white-space:nowrap;
-  margin-left:2.2rem;
-  font-family:var(--script);
-  font-size:clamp(3rem,8vw,5rem);
-  line-height:1;
-  transform:rotate(-3deg);
-  transform-origin:left bottom;
-  animation:sign 2.4s cubic-bezier(.5,.1,.3,1) .3s backwards;
-}
-@keyframes sign{from{clip-path:inset(0 100% 0 0)} to{clip-path:inset(0 0 0 0)}}
 .lede{
   font-size:clamp(1.15rem,2.2vw,1.45rem);
   line-height:1.5;
@@ -333,7 +322,7 @@ footer a:hover{text-decoration:underline}
 
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
-  .signature{animation:none}
+  .hero h1 span{animation:none}
   *{transition:none!important}
 }
 
@@ -346,7 +335,6 @@ footer a:hover{text-decoration:underline}
 
 <section class="hero">
   <h1><span>Martin</span><span>Victoria</span></h1>
-  <div class="sign" aria-hidden="true"><span class="signature">Martin Victoria</span></div>
   <p class="lede">Law student headed into transactional work. This is where I keep my background, my certifications, and the deals and filings I write about.</p>
   <dl class="facts">
     <div><dt>In school</dt><dd>J.D. candidate, University of Miami School of Law, class of 2028</dd></div>
