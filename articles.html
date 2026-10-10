@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Articles | Martin Victoria</title>
+<title>Follow the Paper | Martin Victoria</title>
 <meta name="description" content="Breakdowns of deals and filings by Martin Victoria, sorted by topic.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Articles | Martin Victoria">
+<meta property="og:title" content="Follow the Paper | Martin Victoria">
 <meta property="og:description" content="Breakdowns of deals and filings by Martin Victoria, sorted by topic.">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Articles | Martin Victoria">
+<meta name="twitter:title" content="Follow the Paper | Martin Victoria">
 <meta name="twitter:description" content="Breakdowns of deals and filings by Martin Victoria, sorted by topic.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Mrs+Saint+Delafield&display=swap">
 <style>
@@ -345,8 +345,8 @@ footer a:hover{text-decoration:underline}
 <main id="main">
 
 <section class="intro">
-  <h1>Articles</h1>
-  <p class="lede">Breakdowns of real deals and filings, with the legal reasoning behind them. Each topic has its own color.</p>
+  <h1>Follow the Paper</h1>
+  <p class="lede">The real story of a deal is in its documents. Here I follow the paper, from merger agreements to SEC filings, and explain what the drafting reveals.</p>
   <div class="filters" id="filters" role="group" aria-label="Filter by topic"></div>
 </section>
 <section aria-live="polite"><div class="articles" id="list"></div></section>
@@ -358,7 +358,9 @@ footer a:hover{text-decoration:underline}
 /* To add an article, add an object to this list:
    { title:"...", topic:"ma", date:"October 2026", summary:"One or two sentences.", url:"article-name.html" }
    Topics: ma, sec, ip, priv, corp, sports */
-var ARTICLES = [];
+var ARTICLES = [
+  { title:"Winning the Name, Keeping the Control", topic:"ma", date:"October 2026", summary:"What the Charter-Cox Stockholders Agreement reveals about leverage: Cox got its name on the company, but the drafting left Charter in control.", url:"charter-cox.html" }
+];
 var TOPICS = [
   {key:"ma", name:"M&A"},
   {key:"sec", name:"Securities"},
